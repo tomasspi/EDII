@@ -1,0 +1,7 @@
+https://es.scribd.com/doc/298465025/ASM-PIC16f84a-Encender-y-apagar-led-con-el-mismo-pulsador
+
+http://r-luis.xbot.es/pic1/pic05.html
+
+https://masterhacks.net/programacion/programa-en-ensamblador-para-encender-un-led-con-pic-16f84a/
+
+https://mikitronic.blogspot.com/2014/06/comenzaremos-hacer-un-programa-sencillo.html
