@@ -5,3 +5,7 @@ http://r-luis.xbot.es/pic1/pic05.html
 https://masterhacks.net/programacion/programa-en-ensamblador-para-encender-un-led-con-pic-16f84a/
 
 https://mikitronic.blogspot.com/2014/06/comenzaremos-hacer-un-programa-sencillo.html
+
+https://www.theengineeringprojects.com/2015/03/pic-microcontroller-projects.html
+
+http://www.labbookpages.co.uk/electronics/debounce.html
