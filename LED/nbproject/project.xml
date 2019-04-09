@@ -3,8 +3,8 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>boton_led</name>
-            <creation-uuid>e3c72edc-e262-4d71-a098-4c2f4ddd3a90</creation-uuid>
+            <name>TPNN1</name>
+            <creation-uuid>ed86819d-b69a-452b-aed8-d8961566d555</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions/>
             <cpp-extensions/>

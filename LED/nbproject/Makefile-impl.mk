@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=boton_led.X
+PROJECTNAME=LED
 
 # Active Configuration
 DEFAULTCONF=default
