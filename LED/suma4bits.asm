@@ -66,14 +66,14 @@ INICIO:
  
 SUMA:
     MOVF    PORTB,W
+    XORLW   0xFF
     ANDLW   0xF0
     MOVWF   numero1
     SWAPF   numero1,W
-    ;XORLW   0x0F
     MOVWF   numero1
     MOVF    PORTB,W
+    XORLW   0x0F
     ANDLW   0x0F
-    ;XORLW   0x0F
     ADDWF   numero1,W
     MOVWF   PORTA
     MOVWF   resultado
