@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 MPLINK 5.09, LINKER
 Linker Map File - Created Wed Apr 10 00:07:11 2019
 
@@ -47,3 +48,54 @@ Linker Map File - Created Wed Apr 10 00:07:11 2019
                  PARPADEO   0x000038    program     static T:\Tom\Facultad\Materias\EDII\TPs\LED\suma4bits.asm
 
 
+=======
+MPLINK 5.09, LINKER
+Linker Map File - Created Wed Apr 10 11:16:40 2019
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000002
+                   .cinit    romdata   0x000001    program   0x000004
+                   .org_1       code   0x000005    program   0x000070
+.config_2007_BUILD/DEFAULT/PRODUCTION/SUMA4BI       code   0x002007    program   0x000002
+.config_2008_BUILD/DEFAULT/PRODUCTION/SUMA4BI       code   0x002008    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000002      
+                            0x000005    0x00003c      
+                            0x002007    0x002008      
+            61 out of 8455 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    DELAY   0x000005    program     static C:\Users\Daniela\Desktop\FCEFYN\Electronica Digital 2\codigos mplab\Git\ED2\EDII\LED\suma4bits.asm
+                   INICIO   0x000017    program     static C:\Users\Daniela\Desktop\FCEFYN\Electronica Digital 2\codigos mplab\Git\ED2\EDII\LED\suma4bits.asm
+                 PARPADEO   0x000038    program     static C:\Users\Daniela\Desktop\FCEFYN\Electronica Digital 2\codigos mplab\Git\ED2\EDII\LED\suma4bits.asm
+                     SUMA   0x000029    program     static C:\Users\Daniela\Desktop\FCEFYN\Electronica Digital 2\codigos mplab\Git\ED2\EDII\LED\suma4bits.asm
+                    loop1   0x00000b    program     static C:\Users\Daniela\Desktop\FCEFYN\Electronica Digital 2\codigos mplab\Git\ED2\EDII\LED\suma4bits.asm
+                    loop2   0x000009    program     static C:\Users\Daniela\Desktop\FCEFYN\Electronica Digital 2\codigos mplab\Git\ED2\EDII\LED\suma4bits.asm
+                    loop3   0x000007    program     static C:\Users\Daniela\Desktop\FCEFYN\Electronica Digital 2\codigos mplab\Git\ED2\EDII\LED\suma4bits.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    DELAY   0x000005    program     static C:\Users\Daniela\Desktop\FCEFYN\Electronica Digital 2\codigos mplab\Git\ED2\EDII\LED\suma4bits.asm
+                    loop3   0x000007    program     static C:\Users\Daniela\Desktop\FCEFYN\Electronica Digital 2\codigos mplab\Git\ED2\EDII\LED\suma4bits.asm
+                    loop2   0x000009    program     static C:\Users\Daniela\Desktop\FCEFYN\Electronica Digital 2\codigos mplab\Git\ED2\EDII\LED\suma4bits.asm
+                    loop1   0x00000b    program     static C:\Users\Daniela\Desktop\FCEFYN\Electronica Digital 2\codigos mplab\Git\ED2\EDII\LED\suma4bits.asm
+                   INICIO   0x000017    program     static C:\Users\Daniela\Desktop\FCEFYN\Electronica Digital 2\codigos mplab\Git\ED2\EDII\LED\suma4bits.asm
+                     SUMA   0x000029    program     static C:\Users\Daniela\Desktop\FCEFYN\Electronica Digital 2\codigos mplab\Git\ED2\EDII\LED\suma4bits.asm
+                 PARPADEO   0x000038    program     static C:\Users\Daniela\Desktop\FCEFYN\Electronica Digital 2\codigos mplab\Git\ED2\EDII\LED\suma4bits.asm
+
+
+>>>>>>> 7384cc092d966e3223b11d4369717ae289c19729
