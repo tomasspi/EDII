@@ -1,4 +1,4 @@
-MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  21:16:46         PAGE  1
+MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  19:17:25         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -57,7 +57,7 @@ Message[305]: Using default destination of 1 (file).
 0010   0000           00039         NOP
 Message[305]: Using default destination of 1 (file).
 0011   0BA1           00040         DECFSZ     c2
-MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  21:16:46         PAGE  2
+MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  19:17:25         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -116,7 +116,7 @@ Message[302]: Register in operand not in bank 0.  Ensure that bank bits are corr
 0037   1A24           00082     BTFSC   resultado,4
 0038   2???           00083     CALL    PARPADEO
 0039   2???           00084     GOTO    SUMA
-MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  21:16:46         PAGE  3
+MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  19:17:25         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -130,7 +130,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 003E   2???           00090             GOTO    PARPADEO
                       00091     
 20F1 3FFF             00092             END
-MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  21:16:46         PAGE  4
+MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  19:17:25         PAGE  4
 
 
 SYMBOL TABLE
@@ -189,7 +189,7 @@ BRG6                              00000006
 BRG7                              00000007
 BRG8                              00000000
 BRG9                              00000001
-MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  21:16:46         PAGE  5
+MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  19:17:25         PAGE  5
 
 
 SYMBOL TABLE
@@ -248,7 +248,7 @@ CHS0                              00000002
 CHS1                              00000003
 CHS2                              00000004
 CHS3                              00000005
-MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  21:16:46         PAGE  6
+MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  19:17:25         PAGE  6
 
 
 SYMBOL TABLE
@@ -307,7 +307,7 @@ INTE                              00000004
 INTEDG                            00000006
 INTF                              00000001
 IOCB                              00000096
-MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  21:16:46         PAGE  7
+MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  19:17:25         PAGE  7
 
 
 SYMBOL TABLE
@@ -366,7 +366,7 @@ PCL                               00000002
 PCLATH                            0000000A
 PCON                              0000008E
 PDC0                              00000000
-MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  21:16:46         PAGE  8
+MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  19:17:25         PAGE  8
 
 
 SYMBOL TABLE
@@ -425,7 +425,7 @@ RBIF                              00000000
 RC0                               00000000
 RC1                               00000001
 RC2                               00000002
-MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  21:16:46         PAGE  9
+MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  19:17:25         PAGE  9
 
 
 SYMBOL TABLE
@@ -484,7 +484,7 @@ SSPADD                            00000093
 SSPBUF                            00000013
 SSPCON                            00000014
 SSPCON2                           00000091
-MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  21:16:46         PAGE 10
+MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  19:17:25         PAGE 10
 
 
 SYMBOL TABLE
@@ -543,7 +543,7 @@ TMR2ON                            00000002
 TOUTPS0                           00000003
 TOUTPS1                           00000004
 TOUTPS2                           00000005
-MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  21:16:46         PAGE 11
+MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  19:17:25         PAGE 11
 
 
 SYMBOL TABLE
@@ -602,7 +602,7 @@ TX9                               00000006
 TX9D                              00000000
 TXD8                              00000000
 TXEN                              00000005
-MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  21:16:46         PAGE 12
+MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  19:17:25         PAGE 12
 
 
 SYMBOL TABLE
@@ -661,7 +661,7 @@ _BOR_OFF                          00003CFF
 _BOR_ON                           00003FFF
 _BOR_SBODEN                       00003DFF
 _CONFIG1                          00002007
-MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  21:16:46         PAGE 13
+MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  19:17:25         PAGE 13
 
 
 SYMBOL TABLE
@@ -718,14 +718,16 @@ _WRT_HALF                         000039FF
 _WRT_OFF                          00003FFF
 _XT_OSC                           00003FF9
 __16F887                          00000001
-c1                                00000020
-c2                                00000021
-MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  21:16:46         PAGE 14
+__DEBUG                           
+__MPLAB_DEBUGGER_SIMULATOR        1
+MPASM 5.83                     SUMA4BITS.ASM   4-13-2019  19:17:25         PAGE 14
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+c1                                00000020
+c2                                00000021
 c3                                00000022
 loop1                             0000000B
 loop2                             00000009
