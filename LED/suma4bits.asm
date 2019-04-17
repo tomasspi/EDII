@@ -34,14 +34,10 @@ loop1:
 	NOP
 	DECFSZ     c1
 	GOTO       loop1
-	NOP
-	NOP
-	NOP
 	DECFSZ     c2
 	GOTO       loop2
 	DECFSZ     c3
 	GOTO       loop3
-	NOP
 	RETURN
 	
 INICIO:
