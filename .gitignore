@@ -1,0 +1,12 @@
+*~
+#*
+*.log
+*.aux
+*.out
+*.nav
+*.snm
+*.vrb
+*.toc
+*.class
+*.pdsbak
+*.workspace
