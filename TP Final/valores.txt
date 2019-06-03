@@ -5,5 +5,3 @@ DSP2 -> Unidad
 DSP3 -> ° = 11000110 = 0xC6
 DSP4 -> C = 10011100 = 0x9C
 
-
-lo busco francisco de metodos numericos
