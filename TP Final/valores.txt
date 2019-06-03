@@ -1,7 +1,6 @@
 5ms -> TMR0 = 236
-5000ms -> TMR1 = 46004
+5000ms -> TMR1 = 0x0BDC
 DSP1 -> Decena
 DSP2 -> Unidad
-DSP3 -> ° = 11000110 = 0xC6
-DSP4 -> C = 10011100 = 0x9C
-
+DSP3 -> ° = 11000110 = 0xC6 ó 0x63
+DSP4 -> C = 10011100 = 0x9C ó 0x39
