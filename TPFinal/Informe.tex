@@ -15,7 +15,7 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{subfigure}
 \usepackage{graphicx}
-\graphicspath{{T:/Tom/Facultad/Logos/}{T:/Tom/Facultad/Materias/EDII/TPs/LED/Imagenes/}}
+\graphicspath{{T:/Tom/Facultad/Logos/}{T:/Tom/Facultad/Materias/EDII/TPs/TPFinal/Diagramas/}}
 \usepackage[usenames,dvipsnames]{color}
 \DeclareGraphicsExtensions{.png,.jpg,.pdf,.mps,.gif,.bmp}
 % --- Para las dimensiones de los márgenes etc
@@ -112,20 +112,51 @@
 \renewcommand{\baselinestretch}{1}
 \setlength{\parskip}{0.5em}
 
-\section{Enunciado}
-
-
-
 \section{Introducción}
-
+	Este informe trata sobre el trabajo práctico final de la materia Electrónica Digital II. El tema es a elección de los estudiantes, por lo que se eligió realizar un sensor de temperatura para propósitos generales.
+	
+\subsection{Enunciado}
+	El sistema a realizar consiste en sensar la temperatura ambiente. La medición comienza cuando se presiona un botón. Una vez presionado se muestra el valor sensado en 4 (cuatro) \emph{displays} de siete segmentos con el formato ``XX$^{\circ}$C'' y se realiza un \emph{log} en la computadora cada cinco segundos.
+	
+	Para su realización se utilizaron los siguientes materiales:
+	
+	\begin{itemize}[leftmargin=1.5cm,nosep]
+	\item Microcontrolador PIC16F887,
+	\item Cristal de \SI{4}{\MHz},
+	\item \emph{Bridge USB to UART} CP2102,
+	\item Sensor de temperatura LM35,
+	\item Cuatro \emph{displays} de siete segmentos cátodo común,
+	\item Resistencias de \SI{1}{\kilo\ohm}, \SI{330}{\ohm} y \SI{220}{\ohm},
+	\item Capacitor de \SI{22}{\pico\F},
+	\item Un pulsador.
+	\end{itemize}
 
 \section{Desarrollo}
-\subsection{Cálculos de resistencias}
+		
+\subsection{Cálculos realizados}
+
+\subsubsection{Resistencias para los segmentos}
+	Los \emph{displays} son rojos, usan X voltios y del pic salen X mA, entonces la formula para la resistencia es:
 	
-\subsubsection{Pull-ups}
-
-\subsubsection{LEDs}
-
+	\begin{align*}
+	algo &= 0\\
+	R &= \frac{algo}{algomas}
+	\end{align*}
+	
+	\begin{equation}
+	R = tantos Ohmios
+	\end{equation}		
+	
+\subsubsection{Resistencias para la multiplexación}	
+	Al tratarse de \emph{displays} de cátodo común, se necesitan transistores NPN para su multiplexación.
+	La fórmula para el tiempo de encendido de cada \emph{display} es la siguiente:
+	
+	\begin{equation}
+	Tiempo = \frac{50ms}{N}
+	\end{equation}
+	
+	 Siendo \emph{N} la cantidad de \emph{displays} a utilizar.
+	 
 \section{Implementación}
 	El PIC tiene como frecuencia de reloj un cristal de \SI{4}{\MHz}, por lo que el ciclo de instrucción se realiza con una frecuencia de \SI{1}{\MHz} debido a que cada 4 ciclos del reloj se realiza una instrucción. Esto se debe a que para ejecutar la instrucción indicada, el PIC debe ejecutar cuatro acciones: 
 	
@@ -137,8 +168,7 @@
 	\end{enumerate}
 	
 	Esto es importante para el cálculo de la subrutina de retardo, ya que depende de la frecuencia de reloj que se utilice.
-	
-	A continuación se muestran los diagramas de flujo del programa utilizado.
+
 	
 \subsection{Diagramas de flujo}
 	En esta sección se muestran los diagramas de flujo del programa principal y las subrutinas que utiliza.
@@ -156,9 +186,41 @@
 %	\caption{Diagrama de flujo del programa.}
 %	\end{figure}		
 	
-	\subsubsection{Parpadeo}
+	\subsubsection{Interrupciones}
 
-	\subsubsection{Delay}
+	\paragraph{Interrupción por RB0} Esta interrupcion hace esto
+	
+	\begin{figure}[H]
+	\includegraphics[scale=0.5]{RB0.png}
+	\centering
+	\caption{Diagrama de flujo de la interrupción por RB0.}
+	\end{figure}
+	
+	\paragraph{Interrupción por \emph{Timer0}} Esta interrupcion hace esto
+	
+	\begin{figure}[H]
+	\includegraphics[scale=0.5]{TMR0.png}
+	\centering
+	\caption{Diagrama de flujo de la interrupción por \emph{Timer0}.}
+	\end{figure}
+	
+	
+	\paragraph{Interrupción por \emph{Timer1}} Esta interrupcion hace esto
+	
+	\begin{figure}[H]
+	\includegraphics[scale=0.5]{TMR1.png}
+	\centering
+	\caption{Diagrama de flujo de la interrupción por \emph{Timer1}.}
+	\end{figure}
+	
+	\paragraph{Interrupción por \emph{ADC}} Esta interrupcion hace esto
+	
+	\begin{figure}[H]
+	\includegraphics[scale=0.5]{ADC.png}
+	\centering
+	\caption{Diagrama de flujo de la interrupción por \emph{ADC}.}
+	\end{figure}
+	
 
 \section{Esquema del circuito}
 
