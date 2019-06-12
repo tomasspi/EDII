@@ -43,6 +43,8 @@
   \renewcommand\appendixname{ANEXO}
   \renewcommand\appendixpagename{ANEXOS}
 }
+% USar align sin numeracion y poner numeros donde quiera
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} 
 % -------------------------------------------------------- %
 % Definicion de colores para el codigo
 \lstdefinelanguage{XML}
@@ -126,6 +128,7 @@
 	\item \emph{Bridge USB to UART} CP2102,
 	\item Sensor de temperatura LM35,
 	\item Cuatro \emph{displays} de siete segmentos cátodo común,
+	\item Once transistores NPN XXXX,
 	\item Resistencias de \SI{1}{\kilo\ohm}, \SI{330}{\ohm} y \SI{220}{\ohm},
 	\item Capacitor de \SI{22}{\pico\F},
 	\item Un pulsador.
@@ -136,26 +139,36 @@
 \subsection{Cálculos realizados}
 
 \subsubsection{Resistencias para los segmentos}
-	Los \emph{displays} son rojos, usan X voltios y del pic salen X mA, entonces la formula para la resistencia es:
+	El color de los \emph{displays} es rojo, por lo que cada segmento consume 1.7 [V] y 10 [mA], aproximadamente. Como la tensión de salida del PIC es $V_{OH} = 4.3\,[V]$, el cálculo queda:
 	
 	\begin{align*}
 	algo &= 0\\
-	R &= \frac{algo}{algomas}
+	R &= \frac{algo}{algomas}\\
+	\\R &= 330 \, [\Omega] \numberthis
 	\end{align*}
 	
-	\begin{equation}
-	R = tantos Ohmios
-	\end{equation}		
-	
+\newpage	
 \subsubsection{Resistencias para la multiplexación}	
 	Al tratarse de \emph{displays} de cátodo común, se necesitan transistores NPN para su multiplexación.
-	La fórmula para el tiempo de encendido de cada \emph{display} es la siguiente:
 	
+	La multiplexación consiste en encender un \emph{display} por vez, por lo que se necesita una frecuencia en la que el ojo sea capaz de ver \emph{todos} los \emph{displays} encendidos al mismo tiempo. Esta frecuencia es 50 [Hz].
+	
+	Por lo tanto, la fórmula para el tiempo \emph{t} de encendido de cada \emph{display} es la siguiente:
+
 	\begin{equation}
-	Tiempo = \frac{50ms}{N}
+	t = \frac{20\,[ms]}{N}
+	\label{tiempo}
 	\end{equation}
 	
 	 Siendo \emph{N} la cantidad de \emph{displays} a utilizar.
+	 
+	 Al tratase de cuatro \emph{displays} la ecuación \ref{tiempo} queda:
+	 
+	 \begin{align*}
+	 t &= \frac{20\,[ms]}{4}\\
+	 \\t &= 5\,[ms] \numberthis
+	 \end{align*}
+
 	 
 \section{Implementación}
 	El PIC tiene como frecuencia de reloj un cristal de \SI{4}{\MHz}, por lo que el ciclo de instrucción se realiza con una frecuencia de \SI{1}{\MHz} debido a que cada 4 ciclos del reloj se realiza una instrucción. Esto se debe a que para ejecutar la instrucción indicada, el PIC debe ejecutar cuatro acciones: 
@@ -169,23 +182,74 @@
 	
 	Esto es importante para el cálculo de la subrutina de retardo, ya que depende de la frecuencia de reloj que se utilice.
 
-	
+\newpage
 \subsection{Diagramas de flujo}
 	En esta sección se muestran los diagramas de flujo del programa principal y las subrutinas que utiliza.
 	
 	\subsubsection{Programa principal}	
-	Primero se realiza la configuración de los puertos A y B como salida y entrada digitales, respectivamente. 
 	
-	Una vez configurados los puertos se toman los datos del puerto de entrada y a esa lectura se la invierte, ya que cuando los Dip Switch estén bajos las entradas estarán con un valor de uno lógico debido a la presencia de las resistencias pull-up.
+	\begin{figure}[H]
+	\includegraphics[scale=0.5]{main.png}
+	\centering
+	\caption{Diagrama de flujo del programa.}
+	\end{figure}		
 	
-	Consecuentemente el programa almacena los últimos cuatro bits en la variable \emph{numero1} y se lo suma a los primeros cuatro bits leídos, mostrando el resultado en los LEDs de salida. Si el resultado es de cinco bits, el LED del \emph{digit carry} parpadeará y no se podrá realizar otra suma hasta que se resetee el PIC.
+	Primero se realiza la configuración de los puertos:
 	
-%	\begin{figure}[H]
-%	\includegraphics[scale=0.5]{programa.png}
-%	\centering
-%	\caption{Diagrama de flujo del programa.}
-%	\end{figure}		
+	\begin{itemize}
+	\item Puerto A: A0 como entrada analógica.
+	\item Puerto B: RB0 como entrada digital.
+	\item Puerto C como salida digital.
+	\item Puerto D como salida digital.
+	\end{itemize}
 	
+	Una vez configurados los puertos se configuran los módulos a utilizar.
+	
+	\begin{itemize}
+	\item \emph{Timer0}: (Diagrama \ref{TM0}) se utiliza para la multiplexación de los \emph{displays}, por lo que se lo configura en modo temporizador para contar los 5 [ms]. El tiempo máximo que puede contar el \emph{timer0} con el \emph{prescaler} en 256 y la frecuencia de máquina en 1 [MHz] es:
+	
+	\begin{align*}
+	\label{tmr0}
+	t &= (256 - precarga) * 256 * 1\,[\mu s] \numberthis \\
+	t_{max} &= 256 * 256 * 1\,[\mu s]\\
+	\\t_{max} &\approx 65\,[ms] \numberthis
+	\end{align*}
+	
+	\newpage
+	Por lo tanto, para 5 [ms] la ecuación \ref{tmr0} queda:
+	
+	\begin{align*}
+	5\,[ms] &= (256 - precarga) * 256 * 1\,[\mu s]\\
+	\\ precarga &= 256 - \frac{5\,[ms]}{256 * 1\,[\mu s]}\\
+	\\ precarga &= 236 \numberthis
+	\end{align*}
+	
+	\item \emph{Timer1}: (Diagrama \ref{TM1}) este módulo también se utiliza en modo contador ya que se encarga de contar los cinco segundos. Al cumplirse este tiempo, se realiza una nueva conversión, actualizando el valor sensado, y lo envía al puerto serie.
+	
+	El tiempo máximo que puede contar este \emph{timer} con el \emph{prescaler} en 8 y la frecuencia de máquina en 1 [MHz] es:
+	
+	\begin{align*}
+	\label{tmr1}
+	t &= (65536 - precarga) * 8 * 1\,[\mu s]\\
+	t_{max} &= 65536 * 8 * 1\,[\mu s]\\
+	\\t_{max} &\approx 524\,[ms] \numberthis
+	\end{align*}
+	\end{itemize}
+	
+	Al no poder alcanzar los cinco segundos, se utiliza el \emph{timer1} para contar 500 [ms] y una variable auxiliar que se encargue de verificar que el \emph{timer1} se haya desbordado diez veces, consiguiendo así los cinco segundos necesarios. Para contar los 
+	Consecuentemente, la ecuación \ref{tmr1} queda, para 500 [ms]:
+	
+	\begin{align*}
+	500\,[ms] &= (65536 - precarga) * 8 * 1\,[\mu s]\\
+	\\ precarga &= 65536 - \frac{500\,[ms]}{8 * 1\,[\mu s]}\\
+	\\ precarga &= 3036 \numberthis
+	\end{align*}
+	
+	Esta precarga debe realizarse en dos registros distintos debido a que el \emph{timer1} es de 16 bits. La parte alta del registro (TMR1H) se precarga con un valor de 0x0B, mientras que la parte baja del registro (TMR1L) se precarga con un valor de 0xDC, formando así un total de 3060 en decimal y 0x0BDC en hexadecimal.	
+	
+	Por último se precarga el valor que de temperatura ``00$^{\circ}$C'' que mostrará el programa mostrará el valor hasta que se presione el botón conectado en RB0.
+	
+	\newpage
 	\subsubsection{Interrupciones}
 
 	\paragraph{Interrupción por RB0} Esta interrupcion hace esto
@@ -194,6 +258,7 @@
 	\includegraphics[scale=0.5]{RB0.png}
 	\centering
 	\caption{Diagrama de flujo de la interrupción por RB0.}
+	\label{RB0}
 	\end{figure}
 	
 	\paragraph{Interrupción por \emph{Timer0}} Esta interrupcion hace esto
@@ -202,6 +267,7 @@
 	\includegraphics[scale=0.5]{TMR0.png}
 	\centering
 	\caption{Diagrama de flujo de la interrupción por \emph{Timer0}.}
+	\label{TM0}
 	\end{figure}
 	
 	
@@ -211,6 +277,7 @@
 	\includegraphics[scale=0.5]{TMR1.png}
 	\centering
 	\caption{Diagrama de flujo de la interrupción por \emph{Timer1}.}
+	\label{TM1}
 	\end{figure}
 	
 	\paragraph{Interrupción por \emph{ADC}} Esta interrupcion hace esto
@@ -219,11 +286,29 @@
 	\includegraphics[scale=0.5]{ADC.png}
 	\centering
 	\caption{Diagrama de flujo de la interrupción por \emph{ADC}.}
+	\label{ADC}
 	\end{figure}
 	
+	\subsubsection{\emph{Delay}}
+	Esta sub--rutina se encarga de darle al conversor los tiempos necesarios para la adquisición y conversión de los datos.
+	
+	El tiempo \emph{T} que demora este \emph{delay} es el siguiente:
+	
+	\begin{align*}
+	T &= 4\, \mu s + 3\,\mu s * (DLAY - 1)\\
+	T &= 4\, \mu s + 3\,\mu s * (250 - 1)\\
+	\\T &= 751\, \mu s \numberthis
+	\end{align*}
+	
+	\begin{figure}[H]
+	\includegraphics[scale=0.5]{delay.png}
+	\centering
+	\caption{Diagrama de flujo del \emph{delay}.}
+	\end{figure}
 
+\newpage
 \section{Esquema del circuito}
-
-%\includegraphics[angle=90,origin=c,scale=0.33]{circuito.png}
+\centering
+\includegraphics[angle=90,origin=c,scale=0.25]{circuito.png}
 	
 \end{document}
