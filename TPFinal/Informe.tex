@@ -251,8 +251,17 @@
 	
 	\newpage
 	\subsubsection{Interrupciones}
-
-	\paragraph{Interrupción por RB0} Esta interrupcion hace esto
+	En esta sección se verifica qué módulo realizó la interrupción.
+	
+	\begin{figure}[H]
+	\includegraphics[scale=0.5]{IRS.png}
+	\centering
+	\caption{Diagrama de flujo de las interrupciones.}
+	\label{IRS}
+	\end{figure}		
+	
+	\newpage
+	\paragraph{Interrupción por RB0} Esta interrupción inicia la conversión de la señal analógica que ingresa por A0.
 	
 	\begin{figure}[H]
 	\includegraphics[scale=0.5]{RB0.png}
@@ -261,7 +270,7 @@
 	\label{RB0}
 	\end{figure}
 	
-	\paragraph{Interrupción por \emph{Timer0}} Esta interrupcion hace esto
+	\paragraph{Interrupción por \emph{Timer0}} Si la interrupción es de \emph{timer0} se muestra el valor de la temperatura medida en los \emph{displays}.
 	
 	\begin{figure}[H]
 	\includegraphics[scale=0.5]{TMR0.png}
@@ -270,8 +279,8 @@
 	\label{TM0}
 	\end{figure}
 	
-	
-	\paragraph{Interrupción por \emph{Timer1}} Esta interrupcion hace esto
+	\newpage
+	\paragraph{Interrupción por \emph{Timer1}} Al desbordarse diez veces, habrán pasado los cinco segundos, por lo que se enviará el valor de la temperatura medida a la computadora y se iniciará una nueva conversión.
 	
 	\begin{figure}[H]
 	\includegraphics[scale=0.5]{TMR1.png}
@@ -280,7 +289,7 @@
 	\label{TM1}
 	\end{figure}
 	
-	\paragraph{Interrupción por \emph{ADC}} Esta interrupcion hace esto
+	\paragraph{Interrupción por \emph{ADC}} Si el conversor terminó la conversión de la señal, el resultado se rota hacia la izquierda para obtener el valor de temperatura medido y se actualiza el valor de la temperatura a mostrar. Para obtener el número de correspondiente a las decenas se resta 10 recursivamente al resultado obtenido hasta que dé negativo y luego se realiza el mismo proceso para la unidad, restando 1.
 	
 	\begin{figure}[H]
 	\includegraphics[scale=0.5]{ADC.png}
