@@ -1,20 +1,20 @@
-Warning[207] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 30 : Found label after column 1. (INICIO)
-Message[302] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 33 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 35 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 37 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 38 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 42 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 43 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 47 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 54 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 58 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 64 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 66 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 75 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 149 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 150 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 160 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[305] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 173 : Using default destination of 1 (file).
-Message[305] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 188 : Using default destination of 1 (file).
-Message[305] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 253 : Using default destination of 1 (file).
-Message[305] C:\USERS\DANIELA\DESKTOP\FCEFYN\ELECTRONICA DIGITAL 2\GITHUB\EDII\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 273 : Using default destination of 1 (file).
+Warning[207] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 30 : Found label after column 1. (INICIO)
+Message[302] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 33 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 35 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 37 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 38 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 42 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 43 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 47 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 53 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 57 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 63 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 65 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 74 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 143 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 144 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 153 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 166 : Using default destination of 1 (file).
+Message[305] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 182 : Using default destination of 1 (file).
+Message[305] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 247 : Using default destination of 1 (file).
+Message[305] T:\TOM\FACULTAD\MATERIAS\EDII\TPS\TPFINAL\TP\EJEM.TPFINAL.X\TPFINAL.ASM 265 : Using default destination of 1 (file).

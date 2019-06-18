@@ -128,8 +128,8 @@
 	\item \emph{Bridge USB to UART} CP2102,
 	\item Sensor de temperatura LM35,
 	\item Cuatro \emph{displays} de siete segmentos cátodo común,
-	\item Once transistores NPN XXXX,
-	\item Resistencias de \SI{1}{\kilo\ohm}, \SI{330}{\ohm} y \SI{220}{\ohm},
+	\item Transistores NPN: ocho BC548, un BC546 y dos BC547,
+	\item Resistencias de \SI{1}{\kilo\ohm}, \SI{330}{\ohm} y \SI{4,7}{\kilo\ohm},
 	\item Capacitor de \SI{22}{\pico\F},
 	\item Un pulsador.
 	\end{itemize}
@@ -141,15 +141,35 @@
 \subsubsection{Resistencias para los segmentos}
 	El color de los \emph{displays} es rojo, por lo que cada segmento consume 1.7 [V] y 10 [mA], aproximadamente. Como la tensión de salida del PIC es $V_{OH} = 4.3\,[V]$, el cálculo queda:
 	
-	\begin{align*}
-	algo &= 0\\
-	R &= \frac{algo}{algomas}\\
-	\\R &= 330 \, [\Omega] \numberthis
-	\end{align*}
+\paragraph{Resistencia del colector:}
 	
-\newpage	
-\subsubsection{Resistencias para la multiplexación}	
+	\begin{align*}
+	V_{CC} - V_{CE,SAT1} - V_{LED} - V_{CE,SAT2} &= V_{Rc}\\
+	R_{c} &= \frac{V_{CC} - V_{CE,SAT1} - V_{LED} - V_{CE,SAT2}}{I_{c}}\\
+	R_{c} &= \frac{5\,[V] - 0.1\,[V] - 1.7\,[V] - 0.2\,[V]}{10\,[mA]}\\
+	\\R_{c} &= 330 \, [\Omega] \numberthis
+	\end{align*}
+
+\paragraph{Resistencia de base:}
+
+	\begin{align*}
+	V_{OH} - V_{BE} - V_{LED} - V_{CE,SAT2} &= V_{Rb1}\\
+	R_{Rb1} &= \frac{V_{OH} - V_{BE} - V_{LED} - V_{CE,SAT2}}{I_{b1,SAT1}}\\
+	R_{Rb1} &= \frac{4.3\,[V] - 0.7\,[V] - 1.7\,[V] - 0.2\,[V]}{5\,[mA]}\\
+	\\R_{Rb1} &= 4,7 \, [k\Omega] \numberthis
+	\end{align*}
+
+\subsubsection{Multiplexación}	
 	Al tratarse de \emph{displays} de cátodo común, se necesitan transistores NPN para su multiplexación.
+	
+	La fórmula para el cálculo de la resistencia de base es la siguiente:
+	
+	\begin{align*}
+	V_{OH} - V_{BE} &= V_{Rb}\\
+	R_{b} &= \frac{V_{OH} - V_{BE}}{I_{bSAT}}\\
+	\\R_{b} &= \frac{4.3\,[V] - 0.7\,[V]}{5\,[mA]}\\	
+	\\R_{b} &= 1\,[k \Omega] \numberthis
+	\end{align*}		
 	
 	La multiplexación consiste en encender un \emph{display} por vez, por lo que se necesita una frecuencia en la que el ojo sea capaz de ver \emph{todos} los \emph{displays} encendidos al mismo tiempo. Esta frecuencia es 50 [Hz].
 	
@@ -182,7 +202,6 @@
 	
 	Esto es importante para el cálculo de la subrutina de retardo, ya que depende de la frecuencia de reloj que se utilice.
 
-\newpage
 \subsection{Diagramas de flujo}
 	En esta sección se muestran los diagramas de flujo del programa principal y las subrutinas que utiliza.
 	
@@ -215,7 +234,6 @@
 	\\t_{max} &\approx 65\,[ms] \numberthis
 	\end{align*}
 	
-	\newpage
 	Por lo tanto, para 5 [ms] la ecuación \ref{tmr0} queda:
 	
 	\begin{align*}
@@ -224,7 +242,7 @@
 	\\ precarga &= 236 \numberthis
 	\end{align*}
 	
-	\item \emph{Timer1}: (Diagrama \ref{TM1}) este módulo también se utiliza en modo contador ya que se encarga de contar los cinco segundos. Al cumplirse este tiempo, se realiza una nueva conversión, actualizando el valor sensado, y lo envía al puerto serie.
+	\item \emph{Timer1}: (Diagrama \ref{TM1}) este módulo también se utiliza en modo temporizador ya que se encarga de contar los cinco segundos. Al cumplirse este tiempo, se realiza una nueva conversión, actualizando el valor sensado, y lo envía al puerto serie.
 	
 	El tiempo máximo que puede contar este \emph{timer} con el \emph{prescaler} en 8 y la frecuencia de máquina en 1 [MHz] es:
 	
@@ -248,8 +266,7 @@
 	Esta precarga debe realizarse en dos registros distintos debido a que el \emph{timer1} es de 16 bits. La parte alta del registro (TMR1H) se precarga con un valor de 0x0B, mientras que la parte baja del registro (TMR1L) se precarga con un valor de 0xDC, formando así un total de 3060 en decimal y 0x0BDC en hexadecimal.	
 	
 	Por último se precarga el valor que de temperatura ``00$^{\circ}$C'' que mostrará el programa mostrará el valor hasta que se presione el botón conectado en RB0.
-	
-	\newpage
+
 	\subsubsection{Interrupciones}
 	En esta sección se verifica qué módulo realizó la interrupción.
 	
@@ -318,6 +335,6 @@
 \newpage
 \section{Esquema del circuito}
 \centering
-\includegraphics[angle=90,origin=c,scale=0.25]{circuito.png}
+\includegraphics[angle=90,origin=c,scale=0.5]{circuito.png}
 	
 \end{document}

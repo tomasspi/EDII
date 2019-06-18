@@ -1,4 +1,4 @@
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE  1
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -39,10 +39,10 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
   0000007B            00022  NUM_UNI
                       00023  ENDC
                       00024  
-                      00025     ORG 0x00
-0000   2???           00026     GOTO INICIO
-                      00027     ORG 0x04
-0004   2???           00028     GOTO IRS
+                      00025           ORG 0x00
+0000   2???           00026           GOTO INICIO
+                      00027           ORG 0x04
+0004   2???           00028           GOTO IRS
                       00029 
 Warning[207]: Found label after column 1. (INICIO)
 0005                  00030  INICIO
@@ -57,7 +57,7 @@ Message[302]: Register in operand not in bank 0.  Ensure that bank bits are corr
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
 000B   0086           00037           MOVWF TRISB ; RB0 COMO ENTRADA
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE  2
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -75,314 +75,306 @@ Message[302]: Register in operand not in bank 0.  Ensure that bank bits are corr
                       00045           ;----- CONFIGURACIÓN PARA TRANSMISIÓN POR PUERTO SERIE -----
 0012   1683 1303      00046           BANKSEL TXSTA
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0014   1218           00047       BCF TXSTA, SYNC
-                      00048       
-0015   1283 1303      00049       BANKSEL RCSTA
-0017   1798           00050       BSF RCSTA, SPEN      
-                      00051       
-0018   1683 1303      00052       BANKSEL TXSTA
-001A   3024           00053       MOVLW   b'00100100'   
+0014   1218           00047           BCF TXSTA, SYNC
+0015   1283 1303      00048           BANKSEL RCSTA
+0017   1798           00049           BSF RCSTA, SPEN      
+                      00050       
+0018   1683 1303      00051           BANKSEL TXSTA
+001A   3024           00052           MOVLW   b'00100100'   
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-001B   0098           00054       MOVWF   TXSTA      ;Tx = ON, ASÍNCRONO CON 8 BITS Y ALTA VELOCIDAD
-                      00055       
-001C   1683 1303      00056       BANKSEL SPBRG
-001E   3019           00057       MOVLW   .25
+001B   0098           00053           MOVWF   TXSTA      ;Tx = ON, ASÍNCRONO CON 8 BITS Y ALTA VELOCIDAD
+                      00054       
+001C   1683 1303      00055           BANKSEL SPBRG
+001E   3019           00056           MOVLW   .25
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-001F   0099           00058       MOVWF   SPBRG      ;9600 BAUDIOS CON Fosc=4MHz
-                      00059           ;-----------------------------------------------------------
-                      00060           
-                      00061           ;----- PRE-SCALER EN 256 Y ACTIVACIÓN DEL PULL-UPS -----
-0020   1683 1303      00062           BANKSEL OPTION_REG
-0022   3007           00063           MOVLW B'00000111'
+001F   0099           00057           MOVWF   SPBRG      ;9600 BAUDIOS CON Fosc=4MHz
+                      00058           ;-----------------------------------------------------------
+                      00059           
+                      00060           ;----- PRE-SCALER EN 256 Y ACTIVACIÓN DEL PULL-UPS -----
+0020   1683 1303      00061           BANKSEL OPTION_REG
+0022   3007           00062           MOVLW B'00000111'
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0023   0081           00064           MOVWF OPTION_REG       
-0024   3001           00065           MOVLW B'00000001'
+0023   0081           00063           MOVWF OPTION_REG       
+0024   3001           00064           MOVLW B'00000001'
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0025   0095           00066           MOVWF WPUB             
-                      00067           
-                      00068           ;----- TIMER 1 COMO TEMPORIZADOR CON PRE-SCALER EN 8 -----
-                      00069    
-                      00070       
-                      00071           ;----- CONFIGURACIÓN DEL ADC  -----
-                      00072           ;----- RESULTADO JUSTIFICADO A LA IZQUIERDA -----
-                      00073           ;----- Vref+ = Vcc (5V), Vref- = GND(0V) -----
-0026   1683 1303      00074       BANKSEL ADCON1
+0025   0095           00065           MOVWF WPUB             
+                      00066           
+                      00067           ;----- TIMER 1 COMO TEMPORIZADOR CON PRE-SCALER EN 8 -----
+                      00068    
+                      00069       
+                      00070           ;----- CONFIGURACIÓN DEL ADC  -----
+                      00071           ;----- RESULTADO JUSTIFICADO A LA IZQUIERDA -----
+                      00072           ;----- Vref+ = Vcc (5V), Vref- = GND(0V) -----
+0026   1683 1303      00073           BANKSEL ADCON1
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0028   019F           00075       CLRF ADCON1 
-                      00076       
-                      00077           ;----- Fosc/32, CANAL ANALÓGICO 0 (AN0), ADC HABILITADO -----
-0029   1283 1303      00078       BANKSEL ADCON0
-002B   3081           00079       MOVLW B'10000001'      
-002C   009F           00080       MOVWF ADCON0    
-                      00081       
-                      00082           ;----- ACTIVACIÓN DE INTERRUPCIONES POR TIMER 0 Y RB0 -----
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE  3
+0028   019F           00074           CLRF ADCON1 
+                      00075       
+                      00076           ;----- Fosc/32, CANAL ANALÓGICO 0 (AN0), ADC HABILITADO -----
+0029   1283 1303      00077           BANKSEL ADCON0
+002B   3081           00078           MOVLW B'10000001'      
+002C   009F           00079           MOVWF ADCON0    
+                      00080       
+                      00081           ;----- ACTIVACIÓN DE INTERRUPCIONES POR TIMER 0 Y RB0 -----
+002D   1283 1303      00082           BANKSEL INTCON
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-002D   1283 1303      00083           BANKSEL INTCON
-002F   3070           00084           MOVLW B'01110000'
-0030   008B           00085           MOVWF INTCON   
-                      00086           
-                      00087           ;----- CARGA DEL TIMER1 -----
-                      00088 
-                      00089           
-                      00090           ;----- CARGA DEL TIMER 0 -----
-0031   1283 1303      00091           BANKSEL TMR0
-0033   30EC           00092           MOVLW .236      
-0034   0081           00093           MOVWF TMR0     
-                      00094           
-                      00095           ;----- LIMPIA LOS PUERTOS -----
-0035   0188           00096           CLRF PORTD 
-0036   0187           00097           CLRF PORTC       
-0037   0186           00098           CLRF PORTB
-0038   0185           00099           CLRF PORTA
-                      00100           
-                      00101           ;----- CARGA LOS VALORES POR DEFECTO A MOSTRAR EN LOS DISPLAYS: 00°C -----
-0039   303F           00102           MOVLW 0x3F
-003A   00F1           00103           MOVWF UNIDAD       
-003B   303F           00104           MOVLW 0x3F
-003C   00F0           00105           MOVWF DECENA     
-003D   3063           00106           MOVLW 0x63                
-003E   00F2           00107           MOVWF GRADOS
-003F   3039           00108           MOVLW 0x39
-0040   00F3           00109           MOVWF CELSIUS
-0041   3004           00110           MOVLW .4
-0042   00F6           00111           MOVWF CONTADOR0 
-0043   300A           00112           MOVLW .10
-0044   00F7           00113           MOVWF CONTADOR1
-0045   1283 1303      00114           BANKSEL PORTA
-0047   178B           00115           BSF     INTCON,GIE
-                      00116           
-0048   2???           00117           GOTO $
-                      00118           
-0049                  00119 IRS       ;----- SALVAR CONTEXTO -----
-0049   00F4           00120           MOVWF WA
-004A   0E03           00121           SWAPF STATUS,W
-004B   00F5           00122           MOVWF STATUSA
-                      00123           
-                      00124           ;----- VER BANDERAS -----
-004C   188B           00125           BTFSC INTCON,INTF    
-004D   2???           00126           GOTO RB0SR
-004E   190B           00127           BTFSC INTCON,T0IF   
-004F   2???           00128           GOTO TMR0SR
-0050   180C           00129           BTFSC PIR1,TMR1IF
-0051   2???           00130           GOTO TMR1SR
-0052   1B0C           00131           BTFSC PIR1,ADIF
-0053   2???           00132           GOTO ADSR
-0054   2???           00133           GOTO SALIR
-                      00134           
-                      00135 ;----- INTERRUPCIÓN POR RB0 -----
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE  4
+002F   3070           00083           MOVLW B'01110000'
+0030   008B           00084           MOVWF INTCON   
+                      00085           
+                      00086           ;----- CARGA DEL TIMER 0 -----
+0031   1283 1303      00087           BANKSEL TMR0
+0033   30EC           00088           MOVLW .236      
+0034   0081           00089           MOVWF TMR0     
+                      00090           
+                      00091           ;----- LIMPIA LOS PUERTOS -----
+0035   0188           00092           CLRF PORTD 
+0036   0187           00093           CLRF PORTC       
+0037   0186           00094           CLRF PORTB
+0038   0185           00095           CLRF PORTA
+                      00096           
+                      00097           ;----- CARGA LOS VALORES POR DEFECTO A MOSTRAR EN LOS DISPLAYS: 00°C -----
+0039   303F           00098           MOVLW 0x3F
+003A   00F1           00099           MOVWF UNIDAD       
+003B   303F           00100           MOVLW 0x3F
+003C   00F0           00101           MOVWF DECENA     
+003D   3063           00102           MOVLW 0x63                
+003E   00F2           00103           MOVWF GRADOS
+003F   3039           00104           MOVLW 0x39
+0040   00F3           00105           MOVWF CELSIUS
+0041   3004           00106           MOVLW .4
+0042   00F6           00107           MOVWF CONTADOR0 
+0043   300A           00108           MOVLW .10
+0044   00F7           00109           MOVWF CONTADOR1
+0045   1283 1303      00110           BANKSEL PORTA
+0047   178B           00111           BSF     INTCON,GIE
+                      00112           
+0048   2???           00113           GOTO $
+                      00114           
+0049                  00115 IRS       ;----- SALVAR CONTEXTO -----
+0049   00F4           00116           MOVWF WA
+004A   0E03           00117           SWAPF STATUS,W
+004B   00F5           00118           MOVWF STATUSA
+                      00119           
+                      00120           ;----- VER BANDERAS -----
+004C   188B           00121           BTFSC INTCON,INTF    
+004D   2???           00122           GOTO RB0SR
+004E   190B           00123           BTFSC INTCON,T0IF   
+004F   2???           00124           GOTO TMR0SR
+0050   180C           00125           BTFSC PIR1,TMR1IF
+0051   2???           00126           GOTO TMR1SR
+0052   1B0C           00127           BTFSC PIR1,ADIF
+0053   2???           00128           GOTO ADSR
+0054   2???           00129           GOTO SALIR
+                      00130           
+                      00131 ;----- INTERRUPCIÓN POR RB0 -----
+0055   108B           00132 RB0SR     BCF INTCON,INTF
+0056   149F           00133           BSF ADCON0,1
+0057   1283 1303      00134           BANKSEL T1CON
+0059   3031           00135           MOVLW B'00110001'
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0055   108B           00136 RB0SR     BCF INTCON,INTF
-                      00137           ;CALL DELAY
-0056   149F           00138           BSF ADCON0,1
-                      00139           ;bsf T1CON,0
-0057   1283 1303      00140                   BANKSEL T1CON
-0059   3031           00141       MOVLW B'00110001'
-005A   0090           00142       MOVWF T1CON 
-005B   1283 1303      00143                   BANKSEL TMR1L
-005D   300B           00144       MOVLW 0X0B
-005E   008F           00145       MOVWF TMR1H     
-005F   30DC           00146       MOVLW 0xDC
-0060   008E           00147       MOVWF TMR1L
-0061   1683 1303      00148           banksel PIE1
+005A   0090           00136           MOVWF T1CON 
+005B   1283 1303      00137           BANKSEL TMR1L
+005D   300B           00138           MOVLW 0X0B
+005E   008F           00139           MOVWF TMR1H     
+005F   30DC           00140           MOVLW 0xDC
+0060   008E           00141           MOVWF TMR1L
+0061   1683 1303      00142           BANKSEL PIE1
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0063   170C           00149           bsf   PIE1,ADIE
+0063   170C           00143           BSF PIE1,ADIE
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0064   140C           00150           BSF   PIE1,TMR1IE
-0065   1283 1303      00151           BANKSEL PORTA
-0067   2???           00152           GOTO SALIR
-                      00153 
-                      00154 ;----- INTERRUPCIÓN POR CONVERSOR -----
-                      00155 ;----- MODIFICA EL VALOR A MOSTRAR -----
-0068   130C           00156 ADSR      BCF PIR1,ADIF
-                      00157           
-0069   1003           00158           BCF STATUS,C
-006A   1683 1303      00159           BANKSEL ADRESL
+0064   140C           00144           BSF PIE1,TMR1IE
+0065   1283 1303      00145           BANKSEL PORTA
+0067   2???           00146           GOTO SALIR
+                      00147 
+                      00148 ;----- INTERRUPCIÓN POR CONVERSOR -----
+                      00149 ;----- MODIFICA EL VALOR A MOSTRAR -----
+0068   130C           00150 ADSR      BCF PIR1,ADIF
+0069   1003           00151           BCF STATUS,C
+006A   1683 1303      00152           BANKSEL ADRESL
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-006C   0D9E           00160           RLF ADRESL,F
-006D   1283 1303      00161           BANKSEL ADRESH
-006F   0D9E           00162           RLF ADRESH,F
-0070   081E           00163           MOVF ADRESH,W
-0071   2???           00164           CALL OBTENER_DECENA
-0072   2???           00165           CALL OBTENER_UNIDAD
-0073   2???           00166           GOTO SALIR
-                      00167 
-                      00168 ;----- OBTENER DECENA -----
-0074                  00169 OBTENER_DECENA
-0074   01FA           00170         CLRF    NUM_DEC
-0075   300A           00171         movlw   .10
-0076   029E           00172 restar  subwf   ADRESH,F
+006C   0D9E           00153           RLF ADRESL,F
+006D   1283 1303      00154           BANKSEL ADRESH
+006F   0D9E           00155           RLF ADRESH,F
+0070   081E           00156           MOVF ADRESH,W
+0071   2???           00157           CALL OBTENER_DECENA
+0072   2???           00158           CALL OBTENER_UNIDAD
+0073   2???           00159           GOTO SALIR
+                      00160 
+                      00161 ;----- OBTENER DECENA -----
+0074                  00162 OBTENER_DECENA
+0074   01FA           00163           CLRF  NUM_DEC
+0075   300A           00164           MOVLW .10
+0076   029E           00165 RESTAR    SUBWF ADRESH,F
 Message[305]: Using default destination of 1 (file).
-0077   0AFA           00173         INCF    NUM_DEC
-0078   1803           00174         btfsc   STATUS,C
-0079   2???           00175         goto    restar
-007A   03FA           00176         decf    NUM_DEC,F
-007B   300A           00177         movlw   .10
-007C   079E           00178         addwf   ADRESH,F
-007D   087A           00179         movf    NUM_DEC,W
-007E   2???           00180         CALL    TABLA
-007F   00F0           00181         MOVWF   DECENA
-0080   0008           00182         RETURN    
-                      00183 
-                      00184 ;----- OBTENER UNIDAD -----
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE  5
+0077   0AFA           00166           INCF  NUM_DEC
+0078   1803           00167           BTFSC STATUS,C
+0079   2???           00168           GOTO  RESTAR
+007A   03FA           00169           DECF  NUM_DEC,F
+007B   300A           00170           MOVLW .10
+007C   079E           00171           ADDWF ADRESH,F
+007D   087A           00172           MOVF  NUM_DEC,W
+007E   2???           00173           CALL  TABLA
+007F   00F0           00174           MOVWF DECENA
+0080   0008           00175           RETURN    
+                      00176 
+                      00177 ;----- OBTENER UNIDAD -----
+0081                  00178 OBTENER_UNIDAD  
+0081   01FB           00179           CLRF  NUM_UNI
+0082   3001           00180           MOVLW .1
+0083   029E           00181 RESTARU   SUBWF ADRESH,F
+Message[305]: Using default destination of 1 (file).
+0084   0AFB           00182           INCF  NUM_UNI
+0085   1803           00183           BTFSC STATUS,C
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0081   01FB           00185 OBTENER_UNIDAD  CLRF    NUM_UNI
-0082   3001           00186         movlw   .1
-0083   029E           00187 restarU subwf   ADRESH,F
-Message[305]: Using default destination of 1 (file).
-0084   0AFB           00188         INCF    NUM_UNI
-0085   1803           00189         btfsc   STATUS,C
-0086   2???           00190         goto    restarU
-0087   03FB           00191         decf    NUM_UNI,F
-0088   3001           00192         movlw   .1
-0089   079E           00193         addwf   ADRESH,F
-008A   087B           00194         movf    NUM_UNI,W
-008B   2???           00195         CALL    TABLA
-008C   00F1           00196         MOVWF   UNIDAD
-008D   0008           00197         RETURN
-                      00198 
-                      00199 ;----- INTERRUPCIÓN POR TIMER0 -----
-008E   110B           00200 TMR0SR    BCF INTCON,T0IF
-008F   30EC           00201           MOVLW     .236
-0090   0081           00202           MOVWF     TMR0
-0091   0BF6           00203           DECFSZ    CONTADOR0,F
-0092   2???           00204           GOTO      MOSTRAR       
-0093   2???           00205           GOTO      MOVDECENA   
-                      00206               
-                      00207 ;----- MUESTRA LOS VALORES EN LOS CONTADOR0S -----
-0094                  00208 MOSTRAR  
-0094   1103           00209           BCF       STATUS,Z
-0095   0876           00210           MOVF      CONTADOR0,W     
-0096   3C03           00211           SUBLW     .3
-0097   00F8           00212           MOVWF     MUX
-0098   1903           00213           BTFSC     STATUS,Z
-0099   2???           00214           GOTO      MOVLETRA
-009A   1878           00215           BTFSC     MUX,0
-009B   2???           00216           GOTO      MOVGRADO
-009C   18F8           00217           BTFSC     MUX,1
-009D   2???           00218           GOTO      MOVUNIDAD
-                      00219           
-009E                  00220 MOVLETRA  
-009E   0873           00221           MOVF  CELSIUS,W
-009F   0088           00222           MOVWF PORTD
-00A0   0187           00223           CLRF  PORTC
-00A1   1587           00224           BSF   PORTC,3
-00A2   2???           00225           GOTO  SALIR
-00A3                  00226 MOVGRADO  
-00A3   0872           00227           MOVF  GRADOS,W
-00A4   0088           00228           MOVWF PORTD
-00A5   0187           00229           CLRF  PORTC
-00A6   1507           00230           BSF   PORTC,2  
-00A7   2???           00231           GOTO  SALIR
-00A8                  00232 MOVUNIDAD 
-00A8   0871           00233           MOVF  UNIDAD,W
-00A9   0088           00234           MOVWF PORTD
-00AA   0187           00235           CLRF  PORTC
-00AB   1487           00236           BSF   PORTC,1  
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE  6
+0086   2???           00184           GOTO  RESTARU
+0087   03FB           00185           DECF  NUM_UNI,F
+0088   3001           00186           MOVLW .1
+0089   079E           00187           ADDWF ADRESH,F
+008A   087B           00188           MOVF  NUM_UNI,W
+008B   2???           00189           CALL  TABLA
+008C   00F1           00190           MOVWF UNIDAD
+008D   0008           00191           RETURN
+                      00192 
+                      00193 ;----- INTERRUPCIÓN POR TIMER0 -----
+008E   110B           00194 TMR0SR    BCF INTCON,T0IF
+008F   30EC           00195           MOVLW .236
+0090   0081           00196           MOVWF TMR0
+0091   0BF6           00197           DECFSZ CONTADOR0,F
+0092   2???           00198           GOTO MOSTRAR    
+0093   2???           00199           GOTO MOVDECENA        
+                      00200               
+                      00201 ;----- MUESTRA LOS VALORES EN LOS CONTADOR0S -----
+0094                  00202 MOSTRAR  
+0094   1103           00203           BCF STATUS,Z
+0095   0876           00204           MOVF CONTADOR0,W          
+0096   3C03           00205           SUBLW .3
+0097   00F8           00206           MOVWF MUX
+0098   1903           00207           BTFSC STATUS,Z
+0099   2???           00208           GOTO MOVLETRA
+009A   1878           00209           BTFSC MUX,0
+009B   2???           00210           GOTO MOVGRADO
+009C   18F8           00211           BTFSC MUX,1
+009D   2???           00212           GOTO MOVUNIDAD
+                      00213           
+009E                  00214 MOVLETRA  
+009E   0873           00215           MOVF CELSIUS,W
+009F   0088           00216           MOVWF PORTD
+00A0   0187           00217           CLRF PORTC
+00A1   1587           00218           BSF PORTC,3
+00A2   2???           00219           GOTO SALIR
+00A3                  00220 MOVGRADO  
+00A3   0872           00221           MOVF GRADOS,W
+00A4   0088           00222           MOVWF PORTD
+00A5   0187           00223           CLRF PORTC
+00A6   1507           00224           BSF PORTC,2    
+00A7   2???           00225           GOTO SALIR
+00A8                  00226 MOVUNIDAD 
+00A8   0871           00227           MOVF UNIDAD,W
+00A9   0088           00228           MOVWF PORTD
+00AA   0187           00229           CLRF PORTC
+00AB   1487           00230           BSF PORTC,1    
+00AC   2???           00231           GOTO SALIR
+00AD                  00232 MOVDECENA 
+00AD   0870           00233           MOVF DECENA,W
+00AE   0088           00234           MOVWF PORTD
+00AF   0187           00235           CLRF PORTC
+00B0   1407           00236           BSF PORTC,0
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-00AC   2???           00237           GOTO  SALIR
-00AD                  00238 MOVDECENA 
-00AD   0870           00239           MOVF  DECENA,W
-00AE   0088           00240           MOVWF PORTD
-00AF   0187           00241           CLRF  PORTC
-00B0   1407           00242           BSF   PORTC,0
-00B1   3004           00243           MOVLW .4
-00B2   00F6           00244           MOVWF CONTADOR0
-00B3   2???           00245           GOTO  SALIR   
-                      00246 
-                      00247 ;----- INTERRUPCIÓN POR TIMER1 -----
-00B4   100C           00248 TMR1SR    BCF PIR1,TMR1IF
-00B5   300B           00249           MOVLW 0x0B
-00B6   008F           00250           MOVWF TMR1H
-00B7   30DC           00251           MOVLW 0xDC
-00B8   008E           00252           MOVWF TMR1L
+00B1   3004           00237           MOVLW .4
+00B2   00F6           00238           MOVWF CONTADOR0
+00B3   2???           00239           GOTO SALIR    
+                      00240 
+                      00241 ;----- INTERRUPCIÓN POR TIMER1 -----
+00B4   100C           00242 TMR1SR    BCF PIR1,TMR1IF
+00B5   300B           00243           MOVLW 0x0B
+00B6   008F           00244           MOVWF TMR1H
+00B7   30DC           00245           MOVLW 0xDC
+00B8   008E           00246           MOVWF TMR1L
 Message[305]: Using default destination of 1 (file).
-00B9   0BF7           00253           DECFSZ CONTADOR1
-00BA   2???           00254           GOTO SALIR
-00BB   300A           00255           MOVLW .10
-00BC   00F7           00256           MOVWF CONTADOR1
-                      00257           ;CALL DELAY
-00BD   149F           00258           BSF ADCON0,GO ;UNA VEZ ENVIADOS LOS DATOS A LA PC, HACER UNA CONVERSIÓN.
-00BE   2???           00259           CALL ENVIAR
-                      00260           ;SI ES 0 MANDAR EL DATO
-                      00261           
-                      00262 ;----- RECUPERAR CONTEXTO -----   
-00BF                  00263 SALIR
-00BF   0E75           00264           SWAPF STATUSA,W
-00C0   0083           00265           MOVWF STATUS
-00C1   0EF4           00266           SWAPF WA,F
-00C2   0E74           00267           SWAPF WA,W
-00C3   0009           00268           RETFIE          
-                      00269 
-                      00270 ;----- DELAY PARA ADQUISICION DEL DATO -----
-00C4   30FA           00271 DELAY MOVLW .250
-00C5   00F9           00272       MOVWF DLAY
+00B9   0BF7           00247           DECFSZ CONTADOR1
+00BA   2???           00248           GOTO SALIR
+00BB   300A           00249           MOVLW .10
+00BC   00F7           00250           MOVWF CONTADOR1
+00BD   149F           00251           BSF ADCON0,GO 
+00BE   2???           00252           CALL ENVIAR
+                      00253           
+                      00254 ;----- RECUPERAR CONTEXTO -----   
+00BF                  00255 SALIR
+00BF   0E75           00256           SWAPF STATUSA,W
+00C0   0083           00257           MOVWF STATUS
+00C1   0EF4           00258           SWAPF WA,F
+00C2   0E74           00259           SWAPF WA,W
+00C3   0009           00260           RETFIE          
+                      00261 
+                      00262 ;----- DELAY PARA ADQUISICION DEL DATO -----
+00C4   30FA           00263 DELAY     MOVLW .250
+00C5   00F9           00264           MOVWF DLAY
 Message[305]: Using default destination of 1 (file).
-00C6   0BF9           00273           DECFSZ DLAY           ;250[uS]
-00C7   2???           00274           GOTO $-1
-00C8   0008           00275           RETURN
-                      00276           
-                      00277 ;----- TABLAS CON LOS VALORES DEL 0 AL 9 PARA LOS DISPLAYS -----
-00C9   0782           00278 TABLA     ADDWF PCL,F
-00CA   343F           00279           RETLW 0X3F       ;0
-00CB   3406           00280           RETLW 0x06       ;1
-00CC   345B           00281           RETLW 0x5B       ;2
-00CD   344F           00282           RETLW 0x4F       ;3
-00CE   3466           00283           RETLW 0x66       ;4
-00CF   346D           00284           RETLW 0x6D       ;5
-00D0   347D           00285           RETLW 0x7D       ;6
-00D1   3407           00286           RETLW 0x07       ;7
-00D2   347F           00287           RETLW 0x7F       ;8
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE  7
+00C6   0BF9           00265           DECFSZ DLAY           ;250[uS]
+00C7   2???           00266           GOTO $-1
+00C8   0008           00267           RETURN
+                      00268           
+                      00269 ;----- TABLAS CON LOS VALORES DEL 0 AL 9 PARA LOS DISPLAYS -----
+00C9   0782           00270 TABLA     ADDWF PCL,F
+00CA   343F           00271           RETLW 0X3F       ;0
+00CB   3406           00272           RETLW 0x06       ;1
+00CC   345B           00273           RETLW 0x5B       ;2
+00CD   344F           00274           RETLW 0x4F       ;3
+00CE   3466           00275           RETLW 0x66       ;4
+00CF   346D           00276           RETLW 0x6D       ;5
+00D0   347D           00277           RETLW 0x7D       ;6
+00D1   3407           00278           RETLW 0x07       ;7
+00D2   347F           00279           RETLW 0x7F       ;8
+00D3   346F           00280           RETLW 0x6F       ;9
+                      00281 
+00D4                  00282 ENVIAR
+00D4   3030           00283           MOVLW 0x30
+00D5   077A           00284           ADDWF NUM_DEC,W
+00D6   0099           00285           MOVWF TXREG
+00D7   2???           00286           CALL  DELAY
+00D8   2???           00287           CALL  DELAY
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-00D3   346F           00288           RETLW 0x6F       ;9
-                      00289 
-00D4                  00290 ENVIAR
-00D4   3030           00291           MOVLW 0x30
-00D5   077A           00292           ADDWF NUM_DEC,W
-00D6   0099           00293           MOVWF TXREG
-00D7   2???           00294           CALL  DELAY
-00D8   2???           00295           CALL  DELAY
-00D9   3030           00296           MOVLW 0x30
-00DA   077B           00297           ADDWF NUM_UNI,W
-00DB   0099           00298           MOVWF TXREG
-00DC   2???           00299           CALL  DELAY
-00DD   30A7           00300           MOVLW 0xA7
-00DE   0099           00301           MOVWF TXREG
-00DF   2???           00302           CALL DELAY
-00E0   3043           00303           MOVLW 'C'
-00E1   0099           00304           MOVWF TXREG
-00E2   2???           00305           CALL DELAY
-00E3   3009           00306           MOVLW 0x09
-00E4   0099           00307           MOVWF TXREG
-00E5   2???           00308           CALL  DELAY
-00E6   0008           00309           RETURN
-                      00310           
-20F1 3FFF             00311           END
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE  8
+00D9   3030           00288           MOVLW 0x30
+00DA   077B           00289           ADDWF NUM_UNI,W
+00DB   0099           00290           MOVWF TXREG
+00DC   2???           00291           CALL  DELAY
+00DD   30A7           00292           MOVLW 0xA7
+00DE   0099           00293           MOVWF TXREG
+00DF   2???           00294           CALL DELAY
+00E0   3043           00295           MOVLW 'C'
+00E1   0099           00296           MOVWF TXREG
+00E2   2???           00297           CALL DELAY
+00E3   3009           00298           MOVLW 0x09
+00E4   0099           00299           MOVWF TXREG
+00E5   2???           00300           CALL  DELAY
+00E6   0008           00301           RETURN
+                      00302           
+20F1 3FFF             00303           END
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE  8
 
 
 SYMBOL TABLE
@@ -441,7 +433,7 @@ BRG5                              00000005
 BRG6                              00000006
 BRG7                              00000007
 BRG8                              00000000
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE  9
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE  9
 
 
 SYMBOL TABLE
@@ -500,7 +492,7 @@ CCPR2L                            0000001B
 CELSIUS                           00000073
 CHS0                              00000002
 CHS1                              00000003
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE 10
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE 10
 
 
 SYMBOL TABLE
@@ -559,7 +551,7 @@ HTS                               00000002
 I2C_DATA                          00000005
 I2C_READ                          00000002
 I2C_START                         00000003
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE 11
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE 11
 
 
 SYMBOL TABLE
@@ -618,7 +610,7 @@ NOT_TO                            00000004
 NOT_TX8                           00000006
 NOT_W                             00000002
 NOT_WRITE                         00000002
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE 12
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE 12
 
 
 SYMBOL TABLE
@@ -677,7 +669,7 @@ R                                 00000002
 RA0                               00000000
 RA1                               00000001
 RA2                               00000002
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE 13
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE 13
 
 
 SYMBOL TABLE
@@ -730,18 +722,20 @@ RE1                               00000001
 RE2                               00000002
 RE3                               00000003
 READ_WRITE                        00000002
+RESTAR                            00000076
+RESTARU                           00000083
 RP0                               00000005
 RP1                               00000006
 RSEN                              00000001
 RX9                               00000006
-RX9D                              00000000
-R_NOT_W                           00000002
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE 14
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE 14
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+RX9D                              00000000
+R_NOT_W                           00000002
 R_W                               00000002
 S                                 00000003
 SALIR                             000000BF
@@ -793,14 +787,14 @@ T1GIV                             00000007
 T1GSS                             00000001
 T1INSYNC                          00000002
 T1OSCEN                           00000003
-T1SYNC                            00000002
-T2CKPS0                           00000000
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE 15
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE 15
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+T1SYNC                            00000002
+T2CKPS0                           00000000
 T2CKPS1                           00000001
 T2CON                             00000012
 TABLA                             000000C9
@@ -852,14 +846,14 @@ TRISC4                            00000004
 TRISC5                            00000005
 TRISC6                            00000006
 TRISC7                            00000007
-TRISD                             00000088
-TRISD0                            00000000
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE 16
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE 16
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+TRISD                             00000088
+TRISD0                            00000000
 TRISD1                            00000001
 TRISD2                            00000002
 TRISD3                            00000003
@@ -911,14 +905,14 @@ WDTPS0                            00000001
 WDTPS1                            00000002
 WDTPS2                            00000003
 WDTPS3                            00000004
-WPUB                              00000095
-WPUB0                             00000000
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE 17
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE 17
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+WPUB                              00000095
+WPUB0                             00000000
 WPUB1                             00000001
 WPUB2                             00000002
 WPUB3                             00000003
@@ -970,14 +964,14 @@ _FOSC_INTRC_NOCLKOUT              00003FFC
 _FOSC_LP                          00003FF8
 _FOSC_XT                          00003FF9
 _HS_OSC                           00003FFA
-_IDLOC0                           00002000
-_IDLOC1                           00002001
-MPASM 5.83                       TPFINAL.ASM   6-11-2019  10:39:32         PAGE 18
+MPASM 5.83                       TPFINAL.ASM   6-12-2019  17:42:46         PAGE 18
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+_IDLOC0                           00002000
+_IDLOC1                           00002001
 _IDLOC2                           00002002
 _IDLOC3                           00002003
 _IESO_OFF                         00003BFF
@@ -1003,8 +997,6 @@ _WRT_HALF                         000039FF
 _WRT_OFF                          00003FFF
 _XT_OSC                           00003FF9
 __16F887                          00000001
-restar                            00000076
-restarU                           00000083
 
 Errors   :     0
 Warnings :     1 reported,     0 suppressed

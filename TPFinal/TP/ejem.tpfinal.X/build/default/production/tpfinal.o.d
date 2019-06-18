@@ -1,3 +1,3 @@
 build/default/production/tpfinal.o:  \
-	C:/Users/Daniela/Desktop/FCEFYN/Electronica\ Digital\ 2/github/EDII/TPFinal/TP/ejem.tpfinal.X/tpfinal.asm  \
+	T:/Tom/Facultad/Materias/EDII/TPs/TPFinal/TP/ejem.tpfinal.X/tpfinal.asm  \
 
