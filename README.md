@@ -1,10 +1,5 @@
-# EDII
-Electronica Digital II (EDII)
-
-Universidad Nacional de Córdoba (UNC)
-
-Facultad de Ciencias Exactas, Físicas y Naturales (FCEFyN)
-
-Ingeniería en Computación (ICOMP)
-
-Año 2019
+# Universidad Nacional De Córdoba
+## Facultad de Ciencias Exactas, Físicas y Naturales
+### Electrónica Digital II
+#### Ingeniería en Computación
+#### Año 2019
